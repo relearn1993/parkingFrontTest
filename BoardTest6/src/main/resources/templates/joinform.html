@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<head>
+    <title>Join</title>
+    <!-- Bootstrap core CSS -->
+    <link
+        rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- Scripts -->
+    <script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Additional CSS Files -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="assets/css/join.css">
+</head>
+
+
+
+<body>
+    <div class="container">
+        <form name="join_form" action="" method="post">
+        <div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
+            <div class="card card0 border-0">
+                <div class="row d-flex">
+                    <div class="col-lg-6">
+                        <div class="card1 pb-5">
+                            <div class="row">
+                                <img src="assets/images/white-logo.png" class="logo">
+                            </div>
+                            <div class="row px-3 justify-content-center mt-4 mb-5 border-line">
+                                <img src="assets/images/welcome.jpg" class="image">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card2 card border-0 px-4 py-5 mt-5">
+         
+
+                            <div class="mb-4">
+                                <h2 style="font-weight: 700;color: #203B34;">Welcome to Join Us</h2>
+                                
+                            </div>
+                            <!--nickname-->
+                            <div class="row px-3">
+                                <label for="nickname" class="mb-1">
+                                    <h6 class="mb-0 text-sm">Nick Name</h6>
+                                </label>
+
+                                <input
+                                    id="nickname"
+                                    class="mb-4"
+                                    type="text"
+                                    name=""
+                                    maxlength="20"
+                                    placeholder="Enter a valid Nick Name">
+                               
+
+                            </div>
+                            <!--nickname-->
+
+                            <!--email-->
+                            <div class="row px-3">
+                                <label for="email" class="mb-1">
+                                    <h6 class="mb-0 text-sm">Email Address</h6>
+                                </label>
+
+                                <input
+                                    id="email"
+                                    class="mb-4"
+                                    type="text"
+                                    name=""
+                                    maxlength="25"
+                                    placeholder="Enter a valid email address">
+
+                            </div>
+                            <!--email-->
+
+                            <!--password-->
+                            <div class="row px-3">
+                                <label class="mb-1">
+                                    <h6 class="mb-0 text-sm">Password</h6>
+                                </label>
+                                <input id="password" type="password" name="password" placeholder="Enter password" maxlength="10">
+                            </div>
+                            <!--password-->
+
+                            <div class="row mb-4 px-3">
+                                <small class="font-weight-bold">Already a Member?
+                                    <a class="text-success" href="/login">Login</a>
+                                </small>
+                            </div>
+                            <div class="row mb-3 px-3">
+                                <button
+                                    type="button"
+                                    class="btn btn-blue text-center"
+                                    onclick="joinform_check();">Create Member</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-blue py-4">
+                    <div class="row px-3">
+                        <small class="ml-4 ml-sm-5 mb-2">Copyright &copy; 2021. All rights reserved.</small>
+                        <div class="social-contact ml-4 ml-sm-auto">
+                            <span class="fa fa-facebook mr-4 text-sm"></span>
+                            <span class="fa fa-google-plus mr-4 text-sm"></span>
+                            <span class="fa fa-linkedin mr-4 text-sm"></span>
+                            <span class="fa fa-twitter mr-4 mr-sm-5 text-sm"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    </div>
+    <script>
+            function joinform_check() {
+            var nickname = document.getElementById("nickname");
+            var password = document.getElementById("password");
+            var email = document.getElementById("email");
+            
+            if (nickname.value == "") {
+                alert("닉네임을 입력하세요.");
+                nickname.focus();
+                return false;
+            };
+
+            var nicknameCheck = /^[A-Za-z0-9+]{3,20}$/;
+            if (!nicknameCheck.test(nickname.value)) {
+                alert("알파벳 대소문자 또는 숫자로 최소 3자이상 구성된 닉네임을 입력해주세요.");
+                nickname.focus();
+                return false;
+            };
+            
+            if (email.value == "") {
+                alert("이메일을 입력하세요.");
+                email.focus();
+                return false;
+            };
+
+            //이메일 정규식
+            var emailCheck = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+            if (!emailCheck.test(email.value)){
+                alert("이메일 양식을 지켜주세요.")
+                email.focus();
+                return false;
+            }
+
+            if(password.value ==""){
+                alert("비밀번호를 입력하세요.");
+                password.focus();
+                return false;
+            };
+
+            //비밀번호 영문자+숫자+특수조합(5~10자리) 정규식
+            var passwordCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{4,10}$/;
+            if (!passwordCheck.test(password.value)) {
+                alert("비밀번호는 영문자+숫자+특수문자 조합으로 4~10자리 이하로 사용해야 합니다.")
+                password.focus();
+                return false;
+            };
+
+
+
+            //입력 값 전송
+            document.join_form.submit();     
+            }
+
+
+            //ajax로 중복확인
+        function email_overlap_check() {
+            $('.username_input').change(function () {
+            $('.username_input').attr("check_result", "fail");
+            })
+
+            if ($('.username_input').val() == '') {
+            alert('이메일을 입력해주세요.')
+            return;
+            }
+
+
+
+
+            email_overlap_input = document.querySelector('input[name="username"]');
+
+            $.ajax({
+            url: "{% url 'lawyerAccount:email_overlap_check' %}",
+            data: {
+                'username': email_overlap_input.value
+            },
+            datatype: 'json',
+            success: function (data) {
+                console.log(data['overlap']);
+                if (data['overlap'] == "fail") {
+                alert("이미 존재하는 이메일 입니다.");
+                email_overlap_input.focus();
+                return;
+                } else {
+                alert("사용가능한 이메일 입니다.");
+                $('.username_input').attr("check_result", "success");
+                return;
+                }
+
+            }
+            });
+            }
+
+
+
+        
+    </script>
+</body>
+
+</html>
